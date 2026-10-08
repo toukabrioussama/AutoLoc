@@ -30,14 +30,12 @@ public class Reservation {
     @Column(nullable = false, length = 20)
     private StatutReservation statut;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_client", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Client client;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_vehicule", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Vehicule vehicule;
 
-    @OneToOne(mappedBy = "reservation")
+    @OneToOne(mappedBy = "reservation", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Contrat contrat;
 }

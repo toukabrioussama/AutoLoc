@@ -32,10 +32,10 @@ public class Contrat {
     @Column(nullable = false)
     private boolean valide;
 
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "id_reservation", nullable = false, unique = true)
+    @OneToOne(fetch = FetchType.LAZY)
     private Reservation reservation;
 
-    @OneToMany(mappedBy = "contrat")
+    @OneToMany(mappedBy = "contrat", cascade = CascadeType.ALL,
+            orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Paiement> paiements = new ArrayList<>();
 }
