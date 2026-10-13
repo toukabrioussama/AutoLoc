@@ -30,4 +30,8 @@ public class Maintenance {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Vehicule vehicule;
+
+
+
+
 }

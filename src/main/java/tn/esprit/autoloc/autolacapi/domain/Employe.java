@@ -30,4 +30,6 @@ public class Employe {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Agence agence;
+
+
 }

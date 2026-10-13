@@ -38,4 +38,6 @@ public class Agence {
 
     @OneToMany(mappedBy = "agence", fetch = FetchType.LAZY)
     private List<Employe> employes = new ArrayList<>();
+
+
 }
