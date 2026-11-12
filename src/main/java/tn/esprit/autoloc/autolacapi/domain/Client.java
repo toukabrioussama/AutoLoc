@@ -40,6 +40,11 @@ public class Client {
     @Column(nullable = false)
     private LocalDate dateInscription;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false, length = 20,
+            columnDefinition = "varchar(20) default 'PARTICULIER'")
+    private TypeClient typeClient = TypeClient.PARTICULIER;
+
     @OneToMany(mappedBy = "client", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<Reservation> reservations = new ArrayList<>();
 }

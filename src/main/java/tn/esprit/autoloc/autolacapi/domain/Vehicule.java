@@ -47,7 +47,10 @@ public class Vehicule {
     @ManyToOne(fetch = FetchType.LAZY)
     private Agence agence;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    // Cascade PERSIST + MERGE : les équipements sont créés avec le véhicule.
+    // Pas de REMOVE : supprimer un véhicule ne doit pas supprimer des équipements partagés.
+    @ManyToMany(fetch = FetchType.LAZY,
+            cascade = { CascadeType.PERSIST, CascadeType.MERGE })
     @JoinTable(name = "vehicule_equipement",
             joinColumns = @JoinColumn(name = "vehicule_id"),
             inverseJoinColumns = @JoinColumn(name = "equipement_id"))
@@ -55,7 +58,5 @@ public class Vehicule {
 
     @OneToMany(mappedBy = "vehicule", cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
     private List<Maintenance> maintenances = new ArrayList<>();
-
-
 
 }
